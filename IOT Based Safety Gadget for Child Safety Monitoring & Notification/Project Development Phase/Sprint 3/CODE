@@ -1,0 +1,51 @@
+<style include=”cr-shared-style settings-shared iron-flex”> 
+      #safety Check Collapse .list-item. selected
+      { 
+         Min-height: var(--settings-row-two-line-min-height); 
+      } 
+ 
+      Iron-icon { 
+        Display: flex; 
+        Flex-shrink: 0; 
+        Padding-inline-end: var(--cr-icon-button-margin-start); 
+        Width: var(--cr-link-row-icon-width, var(--cr-icon-size)); 
+      } 
+    </style> 
+    <div id=”safety Check Parent” class=”cr-row first two-line”> 
+      <iron-icon icon=”settings20: safety-check” aria-hidden=”true”> 
+      </iron-icon> 
+      <div class=”flex cr-padded-text” no-search> 
+        [[parent Display String_]] 
+      </div> 
+      <template is=”dom-if” if=”[[should Show Parent Button_(parent Status_)]]” 
+          Restamp> 
+        <cr-button id=”safety Check Parent Button” class=”action-button” 
+            On-click=”on Run Safety Check Click_” no-search 
+            Aria-label=”$i18n {safety Check Parent Button Aria Label}”> 
+          $i18n {safety Check Parent Button} 
+        </cr-button> 
+      </template> 
+      <template is=”dom-if” if=”[[should Show Parent Icon Button_(parentStatus_)]]” 
+          Re stamp> 
+        <cr-icon-button id=”safety Check Parent Icon Button”            
+ Iron-icon=”settings :refresh” 
+            On-click=”on Run Safety Check Click_” 
+            Aria-label=”$i18n{safety Check Parent Run Again Button Aria Label}”> 
+        </cr-icon-button> 
+      </template> 
+    </div> 
+    <iron-collapse id=”safety Check Collapse” 
+        Opened=”[[should Show Children_(parentStatus_)]]”> 
+      <settings- safety-check-updates-child> 
+      </settings- safety-check-updates-child> 
+      <settings- safety-check-passwords-child> 
+      </settings-safety-check-passwords-child> 
+      <settings- safety-check-safe-browsing-child> 
+      </settings-safety-check-safe-browsing-child> 
+      <settings -safety-check-extensions-child> 
+      </settings-safety-check-extensions-child> 
+<if expr=”_google_chrome and is_win”> 
+      <settings-safety-check-chrome-cleaner-child id=”chrome Cleaner Child”> 
+      </settings-safety-check-chrome-cleaner-child> 
+</if> 
+    </iron-collapse> 
